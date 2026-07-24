@@ -5,9 +5,11 @@ import tiger from "@/assets/tiger.png";
 import wallpaper from "@/assets/wallpaper.jpg";
 
 // ── EDIT THESE ──────────────────────────────────────────────
-const TICKET_URL = "https://www.ticketlounge.co.uk";
-const WHATSAPP_URL = "#"; // paste your WhatsApp community invite link
-const ALBUM_URL = "#"; // "This Is The Sound" pre-order link (Atomic Children Records)
+const TICKET_URL =
+  "https://ticketlounge.co.uk/product/professional-101-live-the-queens-hall-nuneaton-july-10-2026-professional-101-digital-album/";
+const WHATSAPP_URL = "https://chat.whatsapp.com/G9ottfvIHuvLbg5PZHq9qv";
+const ALBUM_URL =
+  "https://ticketlounge.co.uk/product/professional-101-this-is-the-sound-digital-download/";
 const SALE_DATE = "2026-07-24T10:00:00+01:00"; // Super Early Bird drop — 24-7-26 (time editable)
 const VIDEO_URL = ""; // paste trailer URL when Rex sends it (YouTube embed link or .mp4)
 // ────────────────────────────────────────────────────────────
