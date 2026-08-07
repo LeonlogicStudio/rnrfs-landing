@@ -24,18 +24,18 @@ Short, ad-optimized one-scroll page. Design matches the official assets
 3. **Edit the config constants** at the top of `Index.tsx`:
    - `TICKET_URL` — your Ticket Lounge event link (currently the homepage)
    - `WHATSAPP_URL` — your WhatsApp community invite link (currently `#`)
-   - `SALE_DATE` — Super Early Bird drop, set to 24 July 2026 10:00 London
+   - `SALE_DATE` — Early Bird drop, set to 24 July 2026 10:00 London
      (change the time if the drop is at a different hour)
    - `VIDEO_URL` — leave `""` for the placeholder; paste Rex's trailer when
      it arrives (YouTube *embed* URL or a direct .mp4 link both work)
 
 ## Content notes (per Rex's brief, 22-7-26)
 
-- Layout: official banner on top → Super Early Bird drop strip with
+- Layout: official banner on top → Early Bird drop strip with
   countdown → centered video placement → Need-to-know FAQ → footer.
 - Font: Anton (loaded from Google Fonts). Colours from the supplied assets.
 - Event: **November 6, 2026, Electric Brixton** (banner is source of truth).
-- Tickets: **SUPER EARLY BIRD — ON SALE 24-7-26.** The countdown counts to
+- Tickets: **EARLY BIRD — ON SALE 24-7-26.** The countdown counts to
   the drop and flips to "ON SALE NOW" automatically after it passes.
 - Sticky bottom ticket bar shows on mobile only (ads traffic).
 - 18+ / ID / booking-fee small print is in the FAQ section.

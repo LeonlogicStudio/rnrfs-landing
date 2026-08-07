@@ -10,7 +10,7 @@ const TICKET_URL =
 const WHATSAPP_URL = "https://chat.whatsapp.com/G9ottfvIHuvLbg5PZHq9qv";
 const ALBUM_URL =
   "https://ticketlounge.co.uk/product/professional-101-this-is-the-sound-digital-download/";
-const SALE_DATE = "2026-07-24T10:00:00+01:00"; // Super Early Bird drop — 24-7-26 (time editable)
+const SALE_DATE = "2026-07-24T10:00:00+01:00"; // Early Bird drop — 24-7-26 (time editable)
 const VIDEO_URL = ""; // paste trailer URL when Rex sends it (YouTube embed link or .mp4)
 // ────────────────────────────────────────────────────────────
 
@@ -38,7 +38,7 @@ function useCountdown(target: string) {
 }
 
 const marqueeItems = [
-  "Super Early Bird",
+  "Early Bird",
   "On Sale 24 · 7 · 26",
   "Live Music",
   "Performers",
@@ -73,7 +73,7 @@ const Index = () => {
               Live Music · DJ's · Performers · Dancers · Sideshows · Good Times
             </p>
             <p className="drop-title display">
-              <span className="sticker yellow tilt-l">Super Early Bird</span>{" "}
+              <span className="sticker yellow tilt-l">Early Bird</span>{" "}
               <span className="sticker black tilt-r">Tickets</span>{" "}
               <span className="sticker green tilt-l">£19.99</span>
             </p>
@@ -183,7 +183,7 @@ const Index = () => {
             </div>
             <div className="fact hot">
               <div className="k">Tickets</div>
-              <div className="v">Super Early Bird £19.99<br />On Sale 24 · 7 · 26</div>
+              <div className="v">Early Bird £19.99<br />On Sale 24 · 7 · 26</div>
               <div className="bar" />
             </div>
             <div className="fact">
@@ -230,7 +230,7 @@ const Index = () => {
       <div className="sticky-cta">
         <div className="info">
           Nov 6 · Electric Brixton<br />
-          <b>⚡ {c.done ? "Super Early Bird — on sale now" : "Super Early Bird — 24 · 7 · 26"}</b>
+          <b>⚡ {c.done ? "Early Bird — on sale now" : "Early Bird — 24 · 7 · 26"}</b>
         </div>
         <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
           Tickets £19.99
