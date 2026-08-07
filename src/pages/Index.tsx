@@ -75,7 +75,7 @@ const Index = () => {
             <p className="drop-title display">
               <span className="sticker yellow tilt-l">Super Early Bird</span>{" "}
               <span className="sticker black tilt-r">Tickets</span>{" "}
-              <span className="sticker green tilt-l">£14.99</span>
+              <span className="sticker green tilt-l">£19.99</span>
             </p>
 
             {c.done ? (
@@ -101,7 +101,7 @@ const Index = () => {
             <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
               {c.done ? "Get Tickets →" : "Ticket Link →"}
             </a>
-            <p className="urgency">£14.99 · lowest price there will ever be · via Ticket Lounge</p>
+            <p className="urgency">£19.99 · lowest price there will ever be · via Ticket Lounge</p>
           </div>
         </div>
       </header>
@@ -183,7 +183,7 @@ const Index = () => {
             </div>
             <div className="fact hot">
               <div className="k">Tickets</div>
-              <div className="v">Super Early Bird £14.99<br />On Sale 24 · 7 · 26</div>
+              <div className="v">Super Early Bird £19.99<br />On Sale 24 · 7 · 26</div>
               <div className="bar" />
             </div>
             <div className="fact">
@@ -233,7 +233,7 @@ const Index = () => {
           <b>⚡ {c.done ? "Super Early Bird — on sale now" : "Super Early Bird — 24 · 7 · 26"}</b>
         </div>
         <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
-          Tickets £14.99
+          Tickets £19.99
         </a>
       </div>
     </div>
