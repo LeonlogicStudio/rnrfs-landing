@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import logo from "@/assets/freakshow-logo.png";
 import banner from "@/assets/banner.jpg";
 import tiger from "@/assets/tiger.png";
@@ -11,6 +11,10 @@ const WHATSAPP_URL = "https://chat.whatsapp.com/G9ottfvIHuvLbg5PZHq9qv";
 const ALBUM_URL =
   "https://ticketlounge.co.uk/product/professional-101-this-is-the-sound-digital-download/";
 const SALE_DATE = "2026-07-24T10:00:00+01:00"; // Early Bird drop — 24-7-26 (time editable)
+const KLAVIYO_COMPANY_ID = "UKQS7R"; // Klaviyo public API key / site ID
+const KLAVIYO_LIST_ID = "Ua95zq"; // RNRFS mailing list
+const KLAVIYO_FALLBACK_URL =
+  "https://manage.kmail-lists.com/subscriptions/subscribe?a=UKQS7R&g=Ua95zq";
 const VIDEO_URL = ""; // paste trailer URL when Rex sends it (YouTube embed link or .mp4)
 // ────────────────────────────────────────────────────────────
 
@@ -47,6 +51,92 @@ const marqueeItems = [
   "DJ's",
   "Good Times",
 ];
+
+const MailingList = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!email || status === "sending") return;
+    setStatus("sending");
+    try {
+      const res = await fetch(
+        `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/vnd.api+json",
+            revision: "2025-07-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                custom_source: "RNRFS landing page",
+                profile: { data: { type: "profile", attributes: { email } } },
+              },
+              relationships: {
+                list: { data: { type: "list", id: KLAVIYO_LIST_ID } },
+              },
+            },
+          }),
+        }
+      );
+      if (res.status !== 202) throw new Error(`HTTP ${res.status}`);
+      setStatus("done");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <section className="section mail" id="mailing-list">
+      <div className="wrap center">
+        <span className="tape tilt-l">The Rock N Roll Freak Show</span>
+        <h2 className="h2 display mail-title">Join the Freak List</h2>
+        <p className="mail-sub">
+          Ticket drops, lineup reveals and RNRFS chaos — first, straight to your inbox.
+        </p>
+
+        {status === "done" ? (
+          <p className="mail-done display">
+            <span className="sticker green tilt-l">You're on the list.</span>{" "}
+            <span className="sticker yellow tilt-r">Expect chaos ⚡</span>
+          </p>
+        ) : (
+          <form className="mail-form" onSubmit={submit}>
+            <input
+              type="email"
+              required
+              placeholder="YOUR@EMAIL.COM"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-label="Email address"
+              disabled={status === "sending"}
+            />
+            <button type="submit" className="btn btn-mail" disabled={status === "sending"}>
+              {status === "sending" ? "Signing…" : "Sign Me Up"}
+            </button>
+          </form>
+        )}
+
+        {status === "error" && (
+          <p className="mail-error">
+            That didn't work — try again, or{" "}
+            <a href={KLAVIYO_FALLBACK_URL} target="_blank" rel="noopener noreferrer">
+              sign up here
+            </a>
+            .
+          </p>
+        )}
+        <p className="mail-smallprint">
+          Emails from The Rock N Roll Freak Show. No spam, unsubscribe anytime.
+        </p>
+      </div>
+    </section>
+  );
+};
 
 const Index = () => {
   const c = useCountdown(SALE_DATE);
@@ -141,6 +231,9 @@ const Index = () => {
         </div>
       </section>
       */}
+
+      {/* MAILING LIST */}
+      <MailingList />
 
       {/* PROFESSIONAL 101 — ALBUM */}
       <section className="section center band" style={{ backgroundImage: `url(${wallpaper})` }}>
@@ -325,6 +418,34 @@ const css = `
   border:4px solid var(--yellow);width:2.1em;height:2.1em;display:flex;align-items:center;justify-content:center;
   border-radius:50%;padding-left:.15em;box-shadow:5px 5px 0 rgba(237,26,82,.75)}
 .video-placeholder .soon{position:relative;z-index:1;transform:rotate(-1.5deg)}
+
+/* mailing list */
+.mail{background:var(--ink);color:var(--paper);padding:4rem 1.2rem;overflow:hidden;position:relative}
+.mail::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.15;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n2)' opacity='0.5'/%3E%3C/svg%3E")}
+.mail .wrap{position:relative;z-index:1}
+.mail-title{color:var(--yellow);text-shadow:4px 4px 0 rgba(237,26,82,.55);margin-top:1rem}
+.mail-sub{margin-top:1rem;font-family:var(--monoF);font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;font-size:clamp(.68rem,1.8vw,.8rem);color:rgba(255,246,232,.8);line-height:2}
+.mail-form{display:flex;gap:.9rem;justify-content:center;align-items:stretch;flex-wrap:wrap;
+  margin-top:2rem}
+.mail-form input{font-family:var(--monoF);font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.85rem;background:var(--paper);color:var(--ink);border:3px solid var(--ink);
+  padding:.9em 1.2em;width:min(100%,340px);box-shadow:5px 5px 0 rgba(237,26,82,.7);
+  transform:rotate(-.6deg)}
+.mail-form input:focus{outline:4px dashed var(--yellow);outline-offset:3px}
+.mail-form input::placeholder{color:rgba(13,10,8,.45)}
+.btn-mail{font-size:clamp(1.1rem,2.8vw,1.4rem);cursor:pointer;transform:rotate(.8deg);
+  box-shadow:6px 6px 0 var(--pink)}
+.btn-mail:hover{box-shadow:4px 4px 0 var(--pink)}
+.btn-mail:active{box-shadow:0 0 0 var(--pink)}
+.btn-mail:disabled{opacity:.6;cursor:wait}
+.mail-done{margin-top:2rem;font-size:clamp(1.3rem,4vw,2rem)}
+.mail-error{margin-top:1.2rem;font-family:var(--monoF);font-weight:700;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+.mail-error a{color:var(--yellow)}
+.mail-smallprint{margin-top:1.6rem;font-family:var(--monoF);font-weight:700;font-size:.6rem;
+  letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:2}
 
 /* professional 101 */
 .band .band-tiger{width:min(70vw,420px);aspect-ratio:16/9;margin:0 auto .6rem;
