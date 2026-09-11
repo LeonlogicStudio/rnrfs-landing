@@ -10,7 +10,7 @@ const TICKET_URL =
 const WHATSAPP_URL = "https://chat.whatsapp.com/G9ottfvIHuvLbg5PZHq9qv";
 const ALBUM_URL =
   "https://ticketlounge.co.uk/product/professional-101-this-is-the-sound-digital-download/";
-const SALE_DATE = "2026-07-24T10:00:00+01:00"; // original on-sale date (countdown shows "On Sale Now" once passed)
+const SALE_DATE = "2026-07-24T10:00:00+01:00"; // unused — kept for reference
 const KLAVIYO_COMPANY_ID = "UKQS7R"; // Klaviyo public API key / site ID
 const KLAVIYO_LIST_ID = "Ua95zq"; // RNRFS mailing list
 const KLAVIYO_FALLBACK_URL =
@@ -42,7 +42,6 @@ function useCountdown(target: string) {
 }
 
 const marqueeItems = [
-  "Tickets On Sale Now",
   "Live Music",
   "Performers",
   "Dancers",
@@ -138,8 +137,6 @@ const MailingList = () => {
 };
 
 const Index = () => {
-  const c = useCountdown(SALE_DATE);
-
   return (
     <div className="fs-page">
       <style>{css}</style>
@@ -166,28 +163,8 @@ const Index = () => {
               <span className="sticker green tilt-l">£29.99</span>
             </p>
 
-            {c.done ? (
-              <p className="drop-sub display on-sale">On Sale Now</p>
-            ) : (
-              <>
-                <p className="drop-sub display">
-                  On Sale <span className="sticker black tilt-r">Now</span>
-                </p>
-                <div className="count" role="timer" aria-label="Countdown to ticket sale">
-                  {[
-                    [c.d, "Days"], [c.h, "Hrs"], [c.m, "Min"], [c.s, "Sec"],
-                  ].map(([num, lab]) => (
-                    <div className="cell" key={lab}>
-                      <div className="num">{num}</div>
-                      <div className="lab">{lab}</div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-
             <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
-              {c.done ? "Get Tickets →" : "Ticket Link →"}
+              Get Tickets →
             </a>
             <p className="urgency">£29.99 · via Ticket Lounge · 18+ event</p>
           </div>
@@ -274,7 +251,7 @@ const Index = () => {
             </div>
             <div className="fact hot">
               <div className="k">Tickets</div>
-              <div className="v">£29.99<br />On Sale Now</div>
+              <div className="v">£29.99</div>
               <div className="bar" />
             </div>
             <div className="fact">
@@ -321,7 +298,7 @@ const Index = () => {
       <div className="sticky-cta">
         <div className="info">
           Nov 6 · Electric Brixton<br />
-          <b>⚡ Tickets on sale now</b>
+          <b>⚡ 18+ · via Ticket Lounge</b>
         </div>
         <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
           Tickets £29.99
