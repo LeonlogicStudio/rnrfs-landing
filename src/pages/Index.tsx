@@ -10,7 +10,7 @@ const TICKET_URL =
 const WHATSAPP_URL = "https://chat.whatsapp.com/G9ottfvIHuvLbg5PZHq9qv";
 const ALBUM_URL =
   "https://ticketlounge.co.uk/product/professional-101-this-is-the-sound-digital-download/";
-const SALE_DATE = "2026-07-24T10:00:00+01:00"; // Early Bird drop — 24-7-26 (time editable)
+const SALE_DATE = "2026-07-24T10:00:00+01:00"; // original on-sale date (countdown shows "On Sale Now" once passed)
 const KLAVIYO_COMPANY_ID = "UKQS7R"; // Klaviyo public API key / site ID
 const KLAVIYO_LIST_ID = "Ua95zq"; // RNRFS mailing list
 const KLAVIYO_FALLBACK_URL =
@@ -42,8 +42,7 @@ function useCountdown(target: string) {
 }
 
 const marqueeItems = [
-  "Early Bird",
-  "On Sale 24 · 7 · 26",
+  "Tickets On Sale Now",
   "Live Music",
   "Performers",
   "Dancers",
@@ -163,9 +162,8 @@ const Index = () => {
               Live Music · DJ's · Performers · Dancers · Sideshows · Good Times
             </p>
             <p className="drop-title display">
-              <span className="sticker yellow tilt-l">Early Bird</span>{" "}
-              <span className="sticker black tilt-r">Tickets</span>{" "}
-              <span className="sticker green tilt-l">£19.99</span>
+              <span className="sticker yellow tilt-l">Tickets</span>{" "}
+              <span className="sticker green tilt-l">£29.99</span>
             </p>
 
             {c.done ? (
@@ -173,7 +171,7 @@ const Index = () => {
             ) : (
               <>
                 <p className="drop-sub display">
-                  On Sale <span className="sticker black tilt-r">24 · 7 · 26</span>
+                  On Sale <span className="sticker black tilt-r">Now</span>
                 </p>
                 <div className="count" role="timer" aria-label="Countdown to ticket sale">
                   {[
@@ -191,7 +189,7 @@ const Index = () => {
             <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
               {c.done ? "Get Tickets →" : "Ticket Link →"}
             </a>
-            <p className="urgency">£19.99 · lowest price there will ever be · via Ticket Lounge</p>
+            <p className="urgency">£29.99 · via Ticket Lounge · 18+ event</p>
           </div>
         </div>
       </header>
@@ -276,7 +274,7 @@ const Index = () => {
             </div>
             <div className="fact hot">
               <div className="k">Tickets</div>
-              <div className="v">Early Bird £19.99<br />On Sale 24 · 7 · 26</div>
+              <div className="v">£29.99<br />On Sale Now</div>
               <div className="bar" />
             </div>
             <div className="fact">
@@ -323,10 +321,10 @@ const Index = () => {
       <div className="sticky-cta">
         <div className="info">
           Nov 6 · Electric Brixton<br />
-          <b>⚡ {c.done ? "Early Bird — on sale now" : "Early Bird — 24 · 7 · 26"}</b>
+          <b>⚡ Tickets on sale now</b>
         </div>
         <a className="btn" href={TICKET_URL} target="_blank" rel="noopener noreferrer">
-          Tickets £19.99
+          Tickets £29.99
         </a>
       </div>
     </div>
