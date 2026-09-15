@@ -356,7 +356,10 @@ const css = `
 
 /* banner hero */
 .hero{position:relative}
-.banner{width:100%;height:auto}
+.banner{width:100%;height:auto;display:block}
+.drop{position:relative}
+.drop::before{content:"";position:absolute;top:0;left:0;right:0;height:34px;
+  background:linear-gradient(rgba(13,10,8,.32),transparent);pointer-events:none}
 .drop{padding:3.2rem 1.2rem 3.8rem;background-size:cover;background-position:center;text-align:center}
 .drop-inner{display:flex;flex-direction:column;align-items:center;gap:1.1rem;max-width:880px;margin:0 auto}
 .return{font-size:clamp(1.5rem,4.4vw,2.4rem);color:var(--paper);max-width:16em;
