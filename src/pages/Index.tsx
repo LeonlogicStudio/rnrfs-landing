@@ -166,7 +166,7 @@ const Index = () => {
           <img
             className="banner"
             src={banner}
-            alt="Atomic Children Records presents The Rock N' Roll Freak Show Experience — Band of Skulls, Professional 101, Daland, secret soundsystem DJ set. November 6 2026, Electric Brixton, London."
+            alt="Atomic Children Records presents The Rock N' Roll Freak Show Experience — Band of Skulls, Professional 101, Daland, Vylan Soundsystem DJ set. November 6 2026, Electric Brixton, London."
           />
         </picture>
 
@@ -177,7 +177,7 @@ const Index = () => {
               The Return of the Rock n Roll Freak Show Experience
             </h1>
             <p className="features">
-              Band of Skulls · Professional 101 · Daland · Secret Soundsystem DJ Set
+              Band of Skulls · Professional 101 · Daland · Vylan Soundsystem DJ Set
             </p>
             <p className="drop-title display">
               <span className="sticker yellow tilt-l">Tickets</span>{" "}
@@ -238,7 +238,7 @@ const Index = () => {
           <p className="support display">
             <span className="sticker green tilt-l">★ Professional 101</span>{" "}
             <span className="sticker yellow tilt-r">★ Daland</span>{" "}
-            <span className="sticker black tilt-l">★ Secret Soundsystem DJ Set</span>
+            <span className="sticker black tilt-l">★ Vylan Soundsystem DJ Set</span>
           </p>
           <p className="lineup-extra">+ Sideshows · Performers · Dancers · Good Times</p>
         </div>
