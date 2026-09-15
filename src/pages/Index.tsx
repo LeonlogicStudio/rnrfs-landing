@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from "react";
 import logo from "@/assets/freakshow-logo.png";
 import banner from "@/assets/banner.jpg";
 import bannerMobile from "@/assets/banner-mobile.jpg";
@@ -138,12 +138,29 @@ const MailingList = () => {
 };
 
 const Index = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const [showSticky, setShowSticky] = useState(false);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || !("IntersectionObserver" in window)) {
+      setShowSticky(true);
+      return;
+    }
+    const obs = new IntersectionObserver(
+      ([entry]) => setShowSticky(!entry.isIntersecting),
+      { rootMargin: "-80px 0px 0px 0px" }
+    );
+    obs.observe(hero);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div className="fs-page">
       <style>{css}</style>
 
       {/* BANNER HERO */}
-      <header className="hero">
+      <header className="hero" ref={heroRef}>
         <picture>
           <source media="(max-width: 700px)" srcSet={bannerMobile} />
           <img
@@ -314,8 +331,8 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* STICKY MOBILE CTA */}
-      <div className="sticky-cta">
+      {/* STICKY CTA — slides in after the hero scrolls away */}
+      <div className={`sticky-cta${showSticky ? " visible" : ""}`}>
         <div className="info">
           Nov 6 · Electric Brixton<br />
           <b>⚡ 18+ · via Ticket Lounge</b>
@@ -530,12 +547,20 @@ const css = `
 /* sticky mobile cta */
 .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--ink);
   padding:.6rem .9rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;
-  box-shadow:0 -6px 20px rgba(0,0,0,.4)}
+  box-shadow:0 -6px 20px rgba(0,0,0,.4);
+  transform:translateY(120%);transition:transform .3s ease;pointer-events:none}
+.sticky-cta.visible{transform:translateY(0);pointer-events:auto}
 .sticky-cta .info{font-family:var(--monoF);font-weight:700;font-size:.62rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--paper);line-height:1.7}
 .sticky-cta .info b{color:var(--yellow)}
 .sticky-cta .btn{font-size:1.05rem;padding:.45em 1em;border-width:2px;box-shadow:3px 3px 0 var(--pink)}
-@media (min-width:900px){.sticky-cta{display:none}}
+@media (min-width:900px){
+  .sticky-cta{left:auto;right:1.2rem;bottom:1.2rem;border:3px solid var(--paper);
+    box-shadow:6px 6px 0 rgba(0,0,0,.45);padding:.7rem 1rem;gap:1.1rem;
+    transform:translateY(140%) rotate(-1deg)}
+  .sticky-cta.visible{transform:translateY(0) rotate(-1deg)}
+}
+@media (prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
 `;
 
 export default Index;
