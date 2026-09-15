@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import logo from "@/assets/freakshow-logo.png";
 import banner from "@/assets/banner.jpg";
+import bannerMobile from "@/assets/banner-mobile.jpg";
 import tiger from "@/assets/tiger.png";
 import wallpaper from "@/assets/wallpaper.jpg";
 
@@ -143,11 +144,14 @@ const Index = () => {
 
       {/* BANNER HERO */}
       <header className="hero">
-        <img
-          className="banner"
-          src={banner}
-          alt="The Rock N' Roll Freak Show Experience — November 6 2026, Electric Brixton, London. Tickets from www.ticketlounge.co.uk"
-        />
+        <picture>
+          <source media="(max-width: 700px)" srcSet={bannerMobile} />
+          <img
+            className="banner"
+            src={banner}
+            alt="Atomic Children Records presents The Rock N' Roll Freak Show Experience — Band of Skulls, Professional 101, Daland, secret soundsystem DJ set. November 6 2026, Electric Brixton, London."
+          />
+        </picture>
 
         <div className="drop" style={{ backgroundImage: `url(${wallpaper})` }}>
           <div className="drop-inner">
@@ -156,7 +160,7 @@ const Index = () => {
               The Return of the Rock n Roll Freak Show Experience
             </h1>
             <p className="features">
-              Live Music · DJ's · Performers · Dancers · Sideshows · Good Times
+              Band of Skulls · Professional 101 · Daland · Secret Soundsystem DJ Set
             </p>
             <p className="drop-title display">
               <span className="sticker yellow tilt-l">Tickets</span>{" "}
@@ -206,6 +210,22 @@ const Index = () => {
         </div>
       </section>
       */}
+
+      {/* LINEUP */}
+      <section className="section center lineup" style={{ backgroundImage: `url(${wallpaper})` }}>
+        <div className="wrap">
+          <span className="tape tilt-l">Atomic Children Records presents — Live Bands</span>
+          <div className="headliner-box">
+            <span className="headliner-name">Band of Skulls</span>
+          </div>
+          <p className="support display">
+            <span className="sticker green tilt-l">★ Professional 101</span>{" "}
+            <span className="sticker yellow tilt-r">★ Daland</span>{" "}
+            <span className="sticker black tilt-l">★ Secret Soundsystem DJ Set</span>
+          </p>
+          <p className="lineup-extra">+ Sideshows · Performers · Dancers · Good Times</p>
+        </div>
+      </section>
 
       {/* MAILING LIST */}
       <MailingList />
@@ -309,7 +329,7 @@ const Index = () => {
 };
 
 const css = `
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@600&display=swap');
 
 .fs-page{
   --pink:#ED1A52; --pink-deep:#C90E40; --yellow:#FFAF14; --green:#2E8F2A;
@@ -393,6 +413,21 @@ const css = `
   border:4px solid var(--yellow);width:2.1em;height:2.1em;display:flex;align-items:center;justify-content:center;
   border-radius:50%;padding-left:.15em;box-shadow:5px 5px 0 rgba(237,26,82,.75)}
 .video-placeholder .soon{position:relative;z-index:1;transform:rotate(-1.5deg)}
+
+/* lineup */
+.lineup{padding:4rem 1.2rem}
+.headliner-box{margin:1.6rem auto 0;max-width:760px;background:var(--ink);
+  border:3px solid var(--ink);outline:2px solid var(--paper);outline-offset:-14px;
+  padding:clamp(1.6rem,5vw,2.8rem) 1.2rem;box-shadow:9px 9px 0 rgba(0,0,0,.35);
+  transform:rotate(-.6deg)}
+.headliner-name{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:600;
+  color:var(--paper);font-size:clamp(1.25rem,6.5vw,3.8rem);letter-spacing:.06em;
+  text-transform:uppercase;white-space:nowrap}
+.lineup .support{margin-top:1.8rem;font-size:clamp(1rem,3vw,1.5rem);line-height:2}
+.lineup-extra{margin-top:1.6rem;font-family:var(--monoF);font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;font-size:clamp(.66rem,1.8vw,.8rem);color:var(--ink);
+  background:rgba(255,246,232,.85);display:inline-block;padding:.4em 1em;
+  box-shadow:3px 3px 0 rgba(0,0,0,.35);transform:rotate(-1deg)}
 
 /* mailing list */
 .mail{background:var(--ink);color:var(--paper);padding:4rem 1.2rem;overflow:hidden;position:relative}
