@@ -3,6 +3,10 @@ import logo from "@/assets/freakshow-logo.png";
 import banner from "@/assets/banner.jpg";
 import bannerMobile from "@/assets/banner-mobile.jpg";
 import tiger from "@/assets/tiger.png";
+import logoBos from "@/assets/logo-bandofskulls.png";
+import logoP101 from "@/assets/logo-p101.png";
+import logoDaland from "@/assets/logo-daland.png";
+import logoVylan from "@/assets/logo-vylan.png";
 import wallpaper from "@/assets/wallpaper.jpg";
 
 // ── EDIT THESE ──────────────────────────────────────────────
@@ -232,14 +236,13 @@ const Index = () => {
       <section className="section center lineup" style={{ backgroundImage: `url(${wallpaper})` }}>
         <div className="wrap">
           <span className="tape tilt-l">Atomic Children Records presents — Live Bands</span>
-          <div className="headliner-box">
-            <span className="headliner-name">Band of Skulls</span>
+          <img className="logo-bos" src={logoBos} alt="Band of Skulls" />
+          <div className="act-row">
+            <img className="act a1" src={logoP101} alt="Professional 101" />
+            <img className="act a2" src={logoDaland} alt="Daland" />
+            <span className="sticker green tilt-r act-dj display">DJ Set</span>
+            <img className="act a3" src={logoVylan} alt="Vylan Soundsystem" />
           </div>
-          <p className="support display">
-            <span className="sticker green tilt-l">★ Professional 101</span>{" "}
-            <span className="sticker yellow tilt-r">★ Daland</span>{" "}
-            <span className="sticker black tilt-l">★ Vylan Soundsystem DJ Set</span>
-          </p>
           <p className="lineup-extra">+ Sideshows · Performers · Dancers · Good Times</p>
         </div>
       </section>
@@ -346,7 +349,7 @@ const Index = () => {
 };
 
 const css = `
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 .fs-page{
   --pink:#ED1A52; --pink-deep:#C90E40; --yellow:#FFAF14; --green:#2E8F2A;
@@ -436,14 +439,16 @@ const css = `
 
 /* lineup */
 .lineup{padding:4rem 1.2rem}
-.headliner-box{margin:1.6rem auto 0;max-width:760px;background:var(--ink);
-  border:3px solid var(--ink);outline:2px solid var(--paper);outline-offset:-14px;
-  padding:clamp(1.6rem,5vw,2.8rem) 1.2rem;box-shadow:9px 9px 0 rgba(0,0,0,.35);
-  transform:rotate(-.6deg)}
-.headliner-name{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:600;
-  color:var(--paper);font-size:clamp(1.25rem,6.5vw,3.8rem);letter-spacing:.06em;
-  text-transform:uppercase;white-space:nowrap}
-.lineup .support{margin-top:1.8rem;font-size:clamp(1rem,3vw,1.5rem);line-height:2}
+.logo-bos{width:min(92vw,660px);margin:1.8rem auto 0;display:block;
+  filter:drop-shadow(7px 7px 0 rgba(0,0,0,.3));transform:rotate(-.6deg)}
+.act-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:1.4rem 2.4rem;margin-top:2.4rem}
+.act{height:clamp(30px,5.4vw,52px);width:auto;max-width:78vw;object-fit:contain;
+  filter:drop-shadow(2px 2px 0 rgba(255,246,232,.35))}
+.act.a1{transform:rotate(-1.5deg)}
+.act.a2{transform:rotate(1.2deg)}
+.act.a3{height:clamp(46px,8vw,80px);transform:rotate(-1deg)}
+.act-dj{font-size:clamp(.85rem,2vw,1.1rem);margin-right:-1.4rem}
 .lineup-extra{margin-top:1.6rem;font-family:var(--monoF);font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;font-size:clamp(.66rem,1.8vw,.8rem);color:var(--ink);
   background:rgba(255,246,232,.85);display:inline-block;padding:.4em 1em;
